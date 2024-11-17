@@ -1,4 +1,14 @@
+using UnityEngine;
+
 public abstract class Scroll : DevObject
 {
-    // TODO Faire les parchemins
+    [SerializeField]
+    [Header("Destination pour fin conspiration")]
+    private EScrollDestination cDestination;
+    
+    [SerializeField]
+    [Header("Destination pour fin héroïque")]
+    private EScrollDestination hDestination;
+    
+    // TODO Faire les méthodes
 }

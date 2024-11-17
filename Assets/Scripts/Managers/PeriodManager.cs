@@ -7,11 +7,15 @@ public class PeriodManager : MonoBehaviour
 {
     public static PeriodManager Instance { get; private set; }
 
+    [SerializeField]
+    [Header("Périodes d'une journée")]
+    private Period[] periods;
+
     private void Awake()
     {
         if (Instance != null)
         {
-            Debug.LogError($"PeriodManager already exists on {gameObject.name}. Object has been marked for destruction");
+            Debug.LogWarning($"PeriodManager already exists on {gameObject.name}. Object has been marked for destruction");
             Destroy(gameObject);
             return;
         }
