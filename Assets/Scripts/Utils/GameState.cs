@@ -7,6 +7,8 @@ using UnityEngine;
 public class GameState : MonoBehaviour
 {
     public static GameState Instance { get; private set; }
+
+    public PeriodManager periodManager;
     
     public Monk monk;
 

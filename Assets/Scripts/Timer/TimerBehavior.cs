@@ -1,10 +1,12 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Timer
 {
-    public class TimerBehavior : MonoBehaviour
+    /// <summary>
+    /// EXEMPLE ONLY ! DO NOT USE TIMER BEHAVIOR AS A USABLE CLASS !
+    /// </summary>
+    public abstract class TimerBehavior : MonoBehaviour
     {
         [SerializeField] private float duration = 1f;
         [SerializeField] private UnityEvent onTimerEnd = null;

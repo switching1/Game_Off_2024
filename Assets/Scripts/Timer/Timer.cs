@@ -1,13 +1,12 @@
 using System;
-using UnityEngine;
-using UnityEngine.Events;
 
 namespace Timer
 {
     public class Timer
     {
         public float RemainingSeconds { get; private set; }
-
+        
+        /// <param name="duration">Time in seconds</param>
         public Timer(float duration)
         {
             RemainingSeconds = duration;

@@ -2,29 +2,45 @@ using UnityEngine;
 
 public abstract class Period : DevObject
 {
+    [Header("Durée de la période en heures")] [Min(0)] [SerializeField]
+    private int periodDuration;
 
-    [Header("Durée de la période en heures")]
-    [Min(0)]
-    [SerializeField]
-    private float periodDuration;
-    
+    [Header("Durée d'une heure en secondes")] [Min(0)] [SerializeField]
+    private float hourDuration;
+
+    private int _remainingHours;
+
     public void StartPeriod()
     {
-        // Starter une période
+        _remainingHours = periodDuration;
+        StartHour(); // Démarre la première heure
     }
 
     private void OnPeriodEnd()
     {
-        // Quand la période se termine
     }
 
     public void StartHour()
     {
-        // Starter une heure [Le timer doit être créé ici]
+        var timer = new Timer.Timer(hourDuration);
+        timer.OnTimerEnd += OnHourEnd;
     }
 
-    public void OnHourEnd()
+    private void OnHourEnd()
     {
-        // Quand une heure se termine [Méthode appelée lors de la fin du timer]
+        GameState().monk.AppearanceRoll(); // Appelle la fonction qui peut faire apparaitre le moine.
+    }
+
+    public void NextHour()
+    {
+        _remainingHours--;
+
+        if (_remainingHours == 0)
+        {
+            OnPeriodEnd();
+            return;
+        }
+        
+        StartHour(); // Démarre l'heure suivante.
     }
 }

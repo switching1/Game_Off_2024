@@ -17,6 +17,7 @@ public class PeriodManager : DevObject
 
     private void Awake()
     {
+        GameState().periodManager = this;
         if (Instance != null)
         {
             Debug.LogWarning($"PeriodManager already exists on {gameObject.name}. Object has been marked for destruction");
@@ -32,7 +33,7 @@ public class PeriodManager : DevObject
         _currentPeriodIndex = 0;
     }
 
-    public Period getCurrentPeriod()
+    public Period GetCurrentPeriod()
     {
         return periods[_currentPeriodIndex];
     }

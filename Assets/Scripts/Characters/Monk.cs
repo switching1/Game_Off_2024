@@ -28,6 +28,8 @@ public class Monk : DevObject
     public void Disappear()
     {
         // TODO implémenter la méthode pour faire disparaitre le moine dans une période
+        
+        GameState().periodManager.GetCurrentPeriod().NextHour();
     }
 
     private void Awake()
@@ -37,6 +39,12 @@ public class Monk : DevObject
 
     public void AppearanceRoll()
     {
-        if (Random.value < appearanceProbability && _appearanceCountThisDay < maxAppearancePerDay) Appear();
+        if (Random.value < appearanceProbability && _appearanceCountThisDay < maxAppearancePerDay)
+        {
+            Appear();
+            return;
+        }
+        
+        GameState().periodManager.GetCurrentPeriod().NextHour();
     }
 }
