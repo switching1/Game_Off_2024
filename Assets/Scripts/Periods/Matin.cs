@@ -1,4 +1,4 @@
-public class ApresMidi : Period
+public class Matin : Period
 {
     
 }

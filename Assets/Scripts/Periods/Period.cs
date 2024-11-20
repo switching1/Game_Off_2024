@@ -9,25 +9,32 @@ public abstract class Period : DevObject
     private float hourDuration;
 
     private int _remainingHours;
+    private GameObject _timerObject;
 
     public void StartPeriod()
     {
+        Debug.Log(gameObject.name + " is starting period");
         _remainingHours = periodDuration;
         StartHour(); // Démarre la première heure
     }
 
     private void OnPeriodEnd()
     {
+        GameState().periodManager.NextPeriod();
     }
 
     public void StartHour()
     {
-        var timer = new Timer.Timer(hourDuration);
-        timer.OnTimerEnd += OnHourEnd;
+        Debug.Log(_remainingHours);
+        _timerObject = new GameObject("Timer");
+        var t = _timerObject.AddComponent<Timer.Timer>();
+        t.RemainingSeconds = hourDuration;
+        t.OnTimerEnd += OnHourEnd;
     }
 
     private void OnHourEnd()
     {
+        Destroy(_timerObject);
         GameState().monk.AppearanceRoll(); // Appelle la fonction qui peut faire apparaitre le moine.
     }
 
@@ -35,7 +42,7 @@ public abstract class Period : DevObject
     {
         _remainingHours--;
 
-        if (_remainingHours == 0)
+        if (_remainingHours <= 0)
         {
             OnPeriodEnd();
             return;

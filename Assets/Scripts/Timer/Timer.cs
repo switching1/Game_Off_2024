@@ -1,16 +1,11 @@
 using System;
+using UnityEngine;
 
 namespace Timer
 {
-    public class Timer
+    public class Timer : DevObject
     {
-        public float RemainingSeconds { get; private set; }
-        
-        /// <param name="duration">Time in seconds</param>
-        public Timer(float duration)
-        {
-            RemainingSeconds = duration;
-        }
+        public float RemainingSeconds { get; set; }
 
         public event Action OnTimerEnd;
 
@@ -21,6 +16,11 @@ namespace Timer
             RemainingSeconds -= deltaTime;
 
             CheckForTimerEnd();
+        }
+
+        private void Update()
+        {
+            Tick(Time.deltaTime);
         }
 
         private void CheckForTimerEnd()

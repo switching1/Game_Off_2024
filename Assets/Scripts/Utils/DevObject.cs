@@ -7,6 +7,9 @@ using UnityEngine;
 /// </summary>
 public abstract class DevObject : MonoBehaviour
 {
+    /// <summary>
+    /// Reference to the GameState
+    /// </summary>
     protected GameState GameState()
     {
         if (global::GameState.Instance == null)

@@ -8,12 +8,18 @@ public class GameState : MonoBehaviour
 {
     public static GameState Instance { get; private set; }
 
+    [HideInInspector]
     public PeriodManager periodManager;
     
+    [HideInInspector]
     public Monk monk;
 
+    [Header("Périodes d'une journée")] [SerializeField] [Min(0)]
+    public int daysNumber;
+    
     private void Awake()
     {
+        DontDestroyOnLoad(this);
         if (Instance != null)
         {
             Debug.LogWarning($"GameState already exists on {gameObject.name}. Object has been marked for destruction");

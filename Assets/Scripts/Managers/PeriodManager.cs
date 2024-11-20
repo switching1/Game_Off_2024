@@ -1,3 +1,5 @@
+using System;
+using UnityEditor;
 using UnityEngine;
 
 /// <summary>
@@ -5,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class PeriodManager : DevObject
 {
-    public static PeriodManager Instance { get; private set; }
+    private static PeriodManager Instance { get; set; }
 
     [SerializeField]
     [Header("Périodes d'une journée")]
@@ -17,20 +19,26 @@ public class PeriodManager : DevObject
 
     private void Awake()
     {
-        GameState().periodManager = this;
         if (Instance != null)
         {
             Debug.LogWarning($"PeriodManager already exists on {gameObject.name}. Object has been marked for destruction");
             Destroy(gameObject);
             return;
         }
+        
         Instance = this;
+        GameState().periodManager = this;
 
         if (periods.Length == 0)
         {
             throw new UnityException("PeriodManager is empty. You must add at least one period.");
         }
         _currentPeriodIndex = 0;
+    }
+
+    private void Start()
+    {
+        GetCurrentPeriod().StartPeriod();
     }
 
     public Period GetCurrentPeriod()
@@ -40,18 +48,31 @@ public class PeriodManager : DevObject
 
     public void NextPeriod()
     {
-        if (_currentPeriodIndex == periods.Length - 1)
+        if (_currentPeriodIndex >= periods.Length - 1)
         {
             NextDay();
             return;
         }
         _currentPeriodIndex++;
+        GetCurrentPeriod().StartPeriod();
     }
 
     private void NextDay()
     {
-        CurrentDay++;
-        _currentPeriodIndex = 0;
+        Debug.Log("END Day n°" + CurrentDay);
+        
+        if (CurrentDay < GameState().daysNumber)
+        {
+            CurrentDay++;
+            _currentPeriodIndex = 0;
+            GameState().monk.resetAppearanceCount();
+            GetCurrentPeriod().StartPeriod();
+        }
+        else
+        {
+            Application.Quit();
+            EditorApplication.isPlaying = false;
+        }
     }
     
 }
