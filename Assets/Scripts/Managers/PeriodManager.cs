@@ -3,13 +3,17 @@ using UnityEngine;
 /// <summary>
 /// Utiliser cette classe pour gérer tout ce qui touche aux périodes de la journée.
 /// </summary>
-public class PeriodManager : MonoBehaviour
+public class PeriodManager : DevObject
 {
     public static PeriodManager Instance { get; private set; }
 
     [SerializeField]
     [Header("Périodes d'une journée")]
     private Period[] periods;
+    
+    private int _currentPeriodIndex;
+
+    public int CurrentDay { get; private set; } = 1;
 
     private void Awake()
     {
@@ -20,7 +24,33 @@ public class PeriodManager : MonoBehaviour
             return;
         }
         Instance = this;
+
+        if (periods.Length == 0)
+        {
+            throw new UnityException("PeriodManager is empty. You must add at least one period.");
+        }
+        _currentPeriodIndex = 0;
+    }
+
+    public Period getCurrentPeriod()
+    {
+        return periods[_currentPeriodIndex];
+    }
+
+    public void NextPeriod()
+    {
+        if (_currentPeriodIndex == periods.Length - 1)
+        {
+            NextDay();
+            return;
+        }
+        _currentPeriodIndex++;
+    }
+
+    private void NextDay()
+    {
+        CurrentDay++;
+        _currentPeriodIndex = 0;
     }
     
-    // TODO implémenter les méthodes et attributs permettant la gestion des périodes
 }
