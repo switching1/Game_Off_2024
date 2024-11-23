@@ -1,4 +1,3 @@
-using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -27,7 +26,6 @@ public class PeriodManager : DevObject
         }
         
         Instance = this;
-        GameState().periodManager = this;
 
         if (periods.Length == 0)
         {
@@ -38,6 +36,7 @@ public class PeriodManager : DevObject
 
     private void Start()
     {
+        GameState().periodManager = this;
         GetCurrentPeriod().StartPeriod();
     }
 

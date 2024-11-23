@@ -10,5 +10,5 @@ public abstract class Scroll : DevObject
     [Header("Destination pour fin héroïque")]
     private EScrollDestination hDestination;
     
-    // TODO Faire les méthodes
+    // TODO Ajouter l'attribut texte
 }

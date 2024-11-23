@@ -19,7 +19,6 @@ public class GameState : MonoBehaviour
     
     private void Awake()
     {
-        DontDestroyOnLoad(this);
         if (Instance != null)
         {
             Debug.LogWarning($"GameState already exists on {gameObject.name}. Object has been marked for destruction");
