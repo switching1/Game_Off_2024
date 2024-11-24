@@ -24,7 +24,7 @@ public class GameplayStateManager
 
     private GameplayStateManager()
     {
-
+        CurrentGameplayState = GameplayState.Menu;
     }
 
     public void SetState(GameplayState newGameplayState)

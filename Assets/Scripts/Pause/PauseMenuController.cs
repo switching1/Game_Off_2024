@@ -16,6 +16,6 @@ public class PauseMenuController : MonoBehaviour
 
     private void OnGameplayStateChanged(GameplayState newGameplayState)
     {
-        Debug.Log(newGameplayState);
+        MenuManager.ChangeMenuState(Menu.PAUSE_MENU, newGameplayState == GameplayState.Gameplay ? MenuState.CLOSE : MenuState.OPEN);
     }
 }
