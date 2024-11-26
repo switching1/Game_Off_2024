@@ -143,7 +143,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Parchemin1_0: 439477906749775242
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

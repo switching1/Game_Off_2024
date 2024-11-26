@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Monk : DevObject
@@ -14,9 +15,10 @@ public class Monk : DevObject
     
     private int _appearanceCountThisDay;
     
-    public void ShowText(string text)
+    public void QueueDialog(List<string> dialog)
     {
-        // TODO implémenter la méthode pour afficher les dialogues du moine
+        GameState().dialogTextPanel.textQueue = dialog;
+        GameState().dialogTextPanel.Dialog(0);
     }
 
     public void resetAppearanceCount()
@@ -26,15 +28,31 @@ public class Monk : DevObject
 
     public void Appear()
     {
+        var spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer)
+        {
+            spriteRenderer.enabled = true;
+        }
+        else
+        {
+            Debug.LogWarning("Monk sprite renderer is null");
+        }
         _appearanceCountThisDay++;
         Debug.Log("Apparition du moine !");
         Disappear();
-        // TODO implémenter la méthode pour faire apparaitre le moine dans une période
     }
     
     public void Disappear()
     {
-        // TODO implémenter la méthode pour faire disparaitre le moine dans une période
+        var spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer)
+        {
+            spriteRenderer.enabled = false;
+        }
+        else
+        {
+            Debug.LogWarning("Monk sprite renderer is null");
+        }
         
         GameState().periodManager.GetCurrentPeriod().NextHour();
     }

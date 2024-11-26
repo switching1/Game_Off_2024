@@ -143,7 +143,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bougie_0: 9193830639080488363
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

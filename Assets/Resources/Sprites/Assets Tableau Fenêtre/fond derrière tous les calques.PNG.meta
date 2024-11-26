@@ -143,7 +143,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "fond derri\xE8re tous les calques_0": -3448191624904203109
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
