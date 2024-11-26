@@ -36,6 +36,7 @@ public class DialogTextPanel : DevObject
         {
             Hide();
             ResetQueue();
+            GameState().monk.Disappear();
             return;
         }
         if (index == 0)

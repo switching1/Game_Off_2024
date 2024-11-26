@@ -39,7 +39,7 @@ public class Monk : DevObject
         }
         _appearanceCountThisDay++;
         Debug.Log("Apparition du moine !");
-        Disappear();
+        // TODO Utiliser QueueDialog() pour afficher le dialogue quand le moine apparaît.
     }
     
     public void Disappear()
